@@ -1,0 +1,35 @@
+
+// ContentSizeTableView
+
+import UIKit
+class ContentSizedTableView: UITableView {
+    override var contentSize:CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return CGSize(width: UIViewNoIntrinsicMetric, height: contentSize.height)
+    }
+}
+
+class ContentSizedCollectionView: UICollectionView {
+    override var contentSize:CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return CGSize(width: UIViewNoIntrinsicMetric, height: contentSize.height)
+    }
+}
+
+// How to use 
+// Do not Provide the height Constraints to UItableView.
+// Step 1 - Change Class Of UItableView in StoryBoard.
+// Step 2 - Change the Intrinsic size to Palceholder from ScaleInspector.
+
